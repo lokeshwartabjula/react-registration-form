@@ -22,10 +22,10 @@ function ProfileRegistration(props) {
     const navigate = useNavigate();
 
     const handlefNameUpdate = (e) => {
-        const re = /^[A-Za-z]+$/;
+        const re = /^[A-Za-z]+$/i;
         e.preventDefault();
         setFirstName(e.target.value);
-        if(e.target.value.length > 0 && re.test(firstName))
+        if(e.target.value.length > 0 && re.test(e.target.value))
             setIsFirstNameValid(true);
         else
             setIsFirstNameValid(false);
@@ -50,7 +50,7 @@ function ProfileRegistration(props) {
 
         e.preventDefault();
         setEmail(e.target.value);
-        if(e.target.value.length > 0 && validator.isEmail(email))
+        if(e.target.value.length > 0 && validator.isEmail(e.target.value))
             setIsEmailValid(true);
         else
             setIsEmailValid(false);
@@ -80,10 +80,14 @@ function ProfileRegistration(props) {
         e.preventDefault();
         if(firstName.length === 0 || lastName.length === 0 || email.length === 0 || password.length === 0 || confirmPassword.length === 0)
             alert('Please fill all the fields');
+        else if(!isFirstNameValid || !isLastNameValid || !isEmailValid || !isPasswordValid || !isConfirmPasswordValid)
+            alert('Please fill all the fields correctly');
+        else{
         props.setUser({...user, firstName: firstName, lastName: lastName, email: email, password: password, confirmPassword: confirmPassword});
         console.log(props.user);
 
         navigate('/profile');
+        }
     }
 
 
