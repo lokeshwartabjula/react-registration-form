@@ -60,7 +60,7 @@ function ProfileRegistration(props) {
         const re = /^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;\"'<>,.?\/\\|~-]*$/i;
         e.preventDefault();
         setPassword(e.target.value);
-        if(e.target.value.length > 0 && re.test(e.target.value) && e.target.value.length <= 8)
+        if(e.target.value.length > 0 && re.test(e.target.value) && e.target.value.length >= 8)
             setIsPasswordValid(true);
         else
             setIsPasswordValid(false);
@@ -70,7 +70,7 @@ function ProfileRegistration(props) {
         const re = /^[a-zA-Z0-9!@#$%^&*()_+{}\[\]:;\"'<>,.?\/\\|~-]*$/i;
         e.preventDefault();
         setConfirmPassword(e.target.value);
-        if(e.target.value.length > 0 && re.test(e.target.value) && e.target.value === password && e.target.value.length <= 8)
+        if(e.target.value.length > 0 && re.test(e.target.value) && e.target.value === password && e.target.value.length >= 8)
             setIsConfirmPasswordValid(true);
         else
             setIsConfirmPasswordValid(false);
@@ -143,7 +143,7 @@ function ProfileRegistration(props) {
                     Enter your Password
                 </FormHelperText>
                 ) : (
-                <FormErrorMessage>Password is required and should be in a valid password format.</FormErrorMessage>
+                <FormErrorMessage>Password is required and should have minimum 8 characters.</FormErrorMessage>
             )}
         </FormControl>
 
@@ -155,7 +155,7 @@ function ProfileRegistration(props) {
                     Enter your Password again
                 </FormHelperText>
                 ) : (
-                <FormErrorMessage>Confirm Password required again and should be same as Password.</FormErrorMessage>
+                <FormErrorMessage>Confirm Password is required and should be same as Password.</FormErrorMessage>
             )}
         </FormControl>
 
